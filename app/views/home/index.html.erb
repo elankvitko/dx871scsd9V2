@@ -61,67 +61,69 @@
   </main>
 </div>
 
-<div id="travel-form" class="wrapper row3">
-  <main class='hoc container clear'>
-    <div class="over-popup">
-      <div class="inner">
-        <header>
-          <h2>Travel Inquiry</h2>
-          <h3>let us know where you want to go and we'll send you your tickets. you pay us on your time...fam!</h3>
-          <p>If you're flying to or from LAX, the tickets are on us!</p>
-        </header>
+<% if user_signed_in? %>
+  <div id="travel-form" class="wrapper row3">
+    <main class='hoc container clear'>
+      <div class="over-popup">
+        <div class="inner">
+          <header>
+            <h2>Travel Inquiry</h2>
+            <h3>let us know where you want to go and we'll send you your tickets. you pay us on your time...fam!</h3>
+            <p>If you're flying to or from LAX, the tickets are on us!</p>
+          </header>
 
-        <form class="travel-form" action="/contact" method="post">
-          <div class="form-wrapper-apt">
-            <div class="close-in-1">
-              <label for="airport-from">Flying From - City:</label>
-              <input type="text" name="airport-from">
+          <form class="travel-form" action="/contact" method="post">
+            <div class="form-wrapper-apt">
+              <div class="close-in-1">
+                <label for="airport-from">Flying From - City:</label>
+                <input type="text" name="airport-from">
+              </div>
+
+              <br>
+
+              <div class="close-in-2">
+                <label for="airport-to">Flying To - City:</label>
+                <input type="text" name="airport-to">
+              </div>
+
+              <br>
+
+              <div class="close-in-1">
+                <label for="date">Date:</label>
+                <input type="text" id="datepicker">
+              </div>
+
+              <br>
+
+              <div class="close-in-2">
+                <label for="qty">People</label>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
             </div>
 
             <br>
 
-            <div class="close-in-2">
-              <label for="airport-to">Flying To - City:</label>
-              <input type="text" name="airport-to">
-            </div>
+            <label for="info" class='t-info-label'>Please tell us each person's full name, date of birth, and address!</label>
+            <textarea name="body" rows="8" cols="80"></textarea>
 
             <br>
 
-            <div class="close-in-1">
-              <label for="date">Date:</label>
-              <input type="text" id="datepicker">
+            <div class="submit-holder">
+              <input type="submit" value="Submit!" class='travel-click'>
             </div>
-
-            <br>
-
-            <div class="close-in-2">
-              <label for="qty">People</label>
-              <select>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
+          </form>
+          <div class="flex flex-4">
           </div>
-
-          <br>
-
-          <label for="info" class='t-info-label'>Please tell us each person's full name, date of birth, and address!</label>
-          <textarea name="body" rows="8" cols="80"></textarea>
-
-          <br>
-
-          <div class="submit-holder">
-            <input type="submit" value="Submit!" class='travel-click'>
-          </div>
-        </form>
-        <div class="flex flex-4">
         </div>
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
+<% end %>
 
 <%= render '/layouts/footer' %>
 
