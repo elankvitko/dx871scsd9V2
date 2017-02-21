@@ -142,7 +142,7 @@
 
     var checker = $( '.stop-travel' );
 
-    if ( checker ) {
+    if ( checker.length > 0 ) {
       alert( 'You are not logged in. Please login to make inquiries. Thank you!' )
       window.location = 'http://dx871scsd9v2.herokuapp.com/users/sign_in'
     };
