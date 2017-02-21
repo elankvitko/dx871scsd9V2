@@ -1,0 +1,77 @@
+<%= render '/layouts/header' %>
+<%= render '/layouts/nav' %>
+
+<div class="head">
+  <h3>Order #<%= @order.order_number %> - <%= @order.order_status %></h3>
+
+  <table id='items-table-full'>
+    <col width="70">
+    <col width="70">
+    <col width="50">
+    <col width="100">
+    <col width="10">
+    <tr>
+      <th>Store</th>
+      <th>Item Name</th>
+      <th>Item Model</th>
+      <th>Status</th>
+      <th>Priority</th>
+    </tr>
+
+    <% @items.each_with_index do | item, idx | %>
+    <% if item.status.include?( 'Picked Up!' ) || item.status.include?( 'Delivered!' ) %>
+      <tr class='stat-compl'>
+    <% elsif item.priority == 'High' %>
+      <tr class='high-prio'>
+    <% else %>
+      <tr class='low-prio'>
+    <% end %>
+        <td class='we-ft'><%= item.store %></td>
+        <td class='we-ft'><%= item.name %></td>
+        <td class='we-ft'><%= item.model_number %></td>
+        <td class='td-status we-ft'><%= item.status %></td>
+        <td class='we-ft'>
+          <div class="form-holder">
+            <form class="item-priority-form" action="/items/<%= item.id %>/edit" method="patch">
+              <select name="priority">
+                <% if item.priority == 'Low' %>
+                <option value="Low">Low</option>
+                <option value="High">High</option>
+                <% else %>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
+                <% end %>
+              </select>
+            </form>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="link-holder">
+  <%= link_to "Add To This Order", new_item_path( :order_id => params[ 'id' ] ), class: :add_item_to_order_link %>
+</div>
+
+
+<%= render '/layouts/footer' %>
+
+<script type="text/javascript">
+  $( '.item-priority-form select' ).on( 'change', function( e ) {
+    e.preventDefault();
+
+    var target = e.target;
+    var type = target.parentElement.method;
+    var url = target.parentElement.action;
+    var data = $( target ).serialize();
+
+    $.ajax({
+      type: type,
+      url: url,
+      data: data
+    }).done( function( response ) {
+        location.reload();
+    });
+  });
+</script>

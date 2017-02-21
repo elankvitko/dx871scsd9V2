@@ -4,8 +4,19 @@
     <title>Dx871scsd9V2</title>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'framework', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'fontawesome-4.6.3.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+      $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+    </script>
   </head>
 
   <body>

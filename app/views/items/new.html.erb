@@ -1,0 +1,75 @@
+<%= render '/layouts/header' %>
+<%= render '/layouts/nav' %>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <div class="new-item-form-area">
+      <%= form_for @item do |f| %>
+        <label for="store">Pick A Store</label>
+      <%= f.select :store, [ [ 'TopShop' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'TopShop' } %>
+        <label for="name">Name - Place Color Into Name of Item As Well!</label>
+      <%= f.text_field :name %>
+      <%= f.label :model_number %>
+      <%= f.text_field :model_number %>
+        <label for="price_range">Choose The Price Range For This Item</label>
+      <%= f.select :price_range, [ [ '$0 - $50' ], [ '$50 - $100' ], [ '$100 - $150' ], [ '$150 - $250' ], [ '$250 - $500' ], [ '$500 +' ] ] %>
+      <%= f.hidden_field :shipping_time, value: 'This item will ship out within 24 hours!', class: "hidden_shipping_time" %>
+
+      <p>This item will ship out within 24 hours!</p>
+
+      <% if params[ 'order_id' ] %>
+        <%= f.hidden_field :order_id, value: params[ 'order_id' ] %>
+      <% else %>
+        <%= f.hidden_field :order_id, value: Order.last.id %>
+      <% end %>
+
+      <%= f.submit 'Add Item To Order!', class: "submit-new-item" %>
+      <% end %>
+    </div>
+
+    <div class="link-holder">
+      <% if Order.last.items.empty? == false %>
+      <% if params[ 'order_id' ] %>
+      <%= link_to 'View Your Order', order_path( Order.find_by( id: params[ 'order_id' ] ) ), class: :view_making_order %>
+      <% else %>
+      <%= link_to 'View Your Order', order_path( Order.last ), class: :view_making_order %>
+      <% end %>
+      <% end %>
+    </div>
+  </main>
+</div>
+
+<%= render '/layouts/footer' %>
+
+<script type="text/javascript">
+  $( 'form #item_price_range' ).on( 'change', function( e ) {
+    $('form p').remove();
+    var price_range = e.target.value;
+
+    if ( price_range === '$0 - $50' ) {
+      var element_yes = e.target.parentElement.lastElementChild
+        $(element_yes).before('<p>This item will ship out within 24 hours!</p>');
+        $('.hidden_shipping_time').val('This item will ship out within 24 hours!');
+    } else if ( price_range === '$50 - $100' ) {
+        var element_yes = e.target.parentElement.lastElementChild
+          $(element_yes).before('<p>This item will ship out within 24 - 48 hours!</p>');
+          $('.hidden_shipping_time').val('This item will ship out within 24 - 48 hours!');
+    } else if ( price_range === '$100 - $150' ) {
+        var element_yes = e.target.parentElement.lastElementChild
+          $(element_yes).before('<p>This item will ship out within 3 - 4 days!</p>');
+          $('.hidden_shipping_time').val('This item will ship out within 3 - 4 days!');
+    } else if ( price_range === '$150 - $250' ) {
+        var element_yes = e.target.parentElement.lastElementChild
+          $(element_yes).before('<p>This item will ship out within 3 - 5 days!</p>');
+          $('.hidden_shipping_time').val('This item will ship out within 3 - 5 days!');
+    } else if ( price_range === '$250 - $500' ) {
+        var element_yes = e.target.parentElement.lastElementChild
+          $(element_yes).before('<p>This item will ship out within 5 - 7 days!</p>');
+          $('.hidden_shipping_time').val('This item will ship out within 5 - 7 days!');
+    } else if ( price_range === '$500 +' ) {
+        var element_yes = e.target.parentElement.lastElementChild
+          $(element_yes).before('<p>This item will ship out within 7 - 10 days!</p>');
+          $('.hidden_shipping_time').val('This item will ship out within 7 - 10 days!');
+    };
+  });
+</script>

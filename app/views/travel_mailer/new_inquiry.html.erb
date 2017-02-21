@@ -1,0 +1,15 @@
+<h1>Hi D</h1>
+
+<p>From: <%= @from %></p>
+
+<p>To: <%= @to %></p>
+
+<p>Date: <%= @date %></p>
+
+<p>Number of Travelers: <%= @people %></p>
+
+<p>----------------------Info---------------------</p>
+
+<% @info.each do | piece | %>
+  <p><%= piece %></p>
+<% end %>

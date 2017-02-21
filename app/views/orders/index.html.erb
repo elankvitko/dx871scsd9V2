@@ -1,0 +1,51 @@
+<%= render '/layouts/header' %>
+<%= render '/layouts/nav' %>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <table>
+      <tr>
+        <th>Order Number</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+
+      <% @orders.each do | order | %>
+        <tr>
+          <td><%= link_to "#{ order.order_number }", order_path( order ) %></td>
+          <td><%= order.order_status %></td>
+          <td>
+            <%= form_for order, html: { method: :delete, class: 'form-delete-order' } do |f| %>
+              <%= f.hidden_field :id, value: order.id %>
+              <%= f.submit 'Delete', class: 'submit-todo-delete' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </main>
+</div>
+
+<div class="create_order_button">
+  <%= link_to 'New Order', new_order_path %>
+</div>
+
+<%= render '/layouts/footer' %>
+
+
+<script type="text/javascript">
+  $( '.submit-todo-delete' ).on( 'click', function( e ) {
+    e.preventDefault();
+    var target = e.target.parentElement;
+    var data = "order=" + target[ 3 ].value;
+    var url = target.action;
+
+    $.ajax({
+      type: 'delete',
+      url: url,
+      data: data
+    }).done( function( response ) {
+      location.reload();
+    });
+  });
+</script>
