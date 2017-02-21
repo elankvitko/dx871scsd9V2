@@ -136,6 +136,22 @@
     $('.embed-site').html("<iframe src=" + url + " width='100%' height='600px'></iframe>")
   });
 
+
+  $(".travel-link").click(function( e ) {
+    e.preventDefault();
+
+    var checker = $( '.stop-travel' );
+
+    if ( checker ) {
+      alert( 'You are not logged in. Please login to make inquiries. Thank you!' )
+      window.location = 'http://dx871scsd9v2.herokuapp.com/users/sign_in'
+    };
+
+    $('html, body').animate({
+      scrollTop: $("#travel-form").offset().top
+    }, 2000);
+  });
+
   $( 'form input.travel-click' ).on( 'click', function( e ) {
 		e.preventDefault();
 
@@ -148,7 +164,6 @@
 							 '&qty=' + target.parentElement.parentElement[ 3 ].value +
 							 '&info=' + target.parentElement.parentElement[ 4 ].value
 
-debugger;
 
 		$.ajax({
 			type: type,
