@@ -16,6 +16,14 @@ class OrdersController < ApplicationController
     @items = @items.reverse
   end
 
+  def edit
+    @order = Order.find_by( id: params[ 'id' ] )
+
+    if request.xhr?
+      @order.update_attributes( priority: params[ 'priority' ] )
+    end
+  end
+
   def destroy
     if request.xhr?
       @order = Order.find( params[ 'order' ] )

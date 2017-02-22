@@ -7,13 +7,33 @@
       <tr>
         <th>Order Number</th>
         <th>Status</th>
+        <th>Priority</th>
         <th>Delete</th>
       </tr>
 
       <% @orders.each do | order | %>
-        <tr>
+      <% if order.priority == 'Low' %>
+        <tr class='low-order'>
+      <% else %>
+        <tr class='high-order'>
+      <% end %>
           <td><%= link_to "#{ order.order_number }", order_path( order ) %></td>
           <td><%= order.order_status %></td>
+          <td>
+            <div class="form-holder">
+              <form class="order-priority-form" action="/orders/<%= order.id %>/edit" method="patch">
+                <select name="priority">
+                  <% if order.priority == 'Low' %>
+                  <option value="Low">Low</option>
+                  <option value="High">High</option>
+                  <% else %>
+                  <option value="High">High</option>
+                  <option value="Low">Low</option>
+                  <% end %>
+                </select>
+              </form>
+            </div>
+          </td>
           <td>
             <%= form_for order, html: { method: :delete, class: 'form-delete-order' } do |f| %>
               <%= f.hidden_field :id, value: order.id %>
@@ -34,6 +54,24 @@
 
 
 <script type="text/javascript">
+  $( '.order-priority-form select' ).on( 'change', function( e ) {
+    e.preventDefault();
+
+    var target = e.target;
+    var type = target.parentElement.method;
+    var url = target.parentElement.action;
+    var data = $( target ).serialize();
+
+    $.ajax({
+      type: type,
+      url: url,
+      data: data
+    }).done( function( response ) {
+        location.reload();
+    });
+  });
+
+
   $( '.submit-todo-delete' ).on( 'click', function( e ) {
     e.preventDefault();
     var target = e.target.parentElement;

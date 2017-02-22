@@ -485,3 +485,20 @@ form.travel-form textarea {
 	font-size: 18px;
 	padding: 10px;
 }
+
+.high-order {
+	background-color: #d62727 !important;
+}
+
+.high-order td a {
+	color: #ffffff;
+}
+
+.high-order td:nth-child(2) {
+	color: #ffffff;
+}
+
+.low-order td a {
+	color: #000000;
+	text-decoration: underline;
+}
