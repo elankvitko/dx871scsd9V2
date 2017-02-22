@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dx871scsd9V2</title>
+    <% if user_signed_in? %>
+      <title>Soul Bazaar - <%= current_user.first_name %></title>
+    <% else %>
+      <title>Soul Bazaar</title>
+    <% end %>
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
