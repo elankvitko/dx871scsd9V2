@@ -30,7 +30,7 @@
         <td class='we-ft'><%= item.name %></td>
         <td class='we-ft'><%= item.model_number %></td>
         <td class='td-status we-ft'><%= item.status %></td>
-        <td class='we-ft'>
+        <td class='we-ft priority-changer'>
           <div class="form-holder">
             <form class="item-priority-form" action="/items/<%= item.id %>/edit" method="patch">
               <select name="priority">
