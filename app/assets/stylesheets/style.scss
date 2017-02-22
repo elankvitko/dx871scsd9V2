@@ -424,3 +424,41 @@ form.travel-form textarea {
   height: 50px;
   border-radius: 10px;
 }
+
+
+.high-prio {
+	background-color: #d62727 !important;
+	color: #ffffff !important;
+}
+
+.high-prio td:nth-child(1) {
+	color: #ffffff;
+}
+
+.high-prio td:nth-child(2) {
+	color: #ffffff;
+}
+
+.high-prio td:nth-child(3) {
+	color: #ffffff;
+}
+
+.high-prio td:nth-child(4) {
+	color: #ffffff;
+}
+
+.low-prio td:nth-child(1) {
+	color: #000000;
+}
+
+.low-prio td:nth-child(2) {
+	color: #000000;
+}
+
+.low-prio td:nth-child(3) {
+	color: #000000;
+}
+
+.low-prio td:nth-child(4) {
+	color: #000000;
+}
