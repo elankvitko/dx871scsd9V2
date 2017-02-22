@@ -1,6 +1,8 @@
 <%= render '/layouts/header' %>
 <%= render '/layouts/nav' %>
 
+<%= render '/layouts/popup' %>
+
 <div class="head">
   <h3>Order #<%= @order.order_number %> - <%= @order.order_status %></h3>
 
@@ -58,6 +60,40 @@
 <%= render '/layouts/footer' %>
 
 <script type="text/javascript">
+  $( '.travel-link' ).on( 'click', function( e ) {
+    e.preventDefault();
+    $( '.popup-traveler' ).show();
+  });
+
+  $( 'form input.travel-click' ).on( 'click', function( e ) {
+    e.preventDefault();
+
+    var target = e.target
+    var url = target.parentElement.parentElement.action
+    var type = target.parentElement.parentElement.method
+    var data = 'airport-from=' + target.parentElement.parentElement[ 0 ].value +
+               '&airport-to=' + target.parentElement.parentElement[ 1 ].value +
+               '&date=' + target.parentElement.parentElement[ 2 ].value +
+               '&qty=' + target.parentElement.parentElement[ 3 ].value +
+               '&info=' + target.parentElement.parentElement[ 4 ].value
+
+
+    $.ajax({
+      type: type,
+      url: url,
+      data: data
+    }).done( function( response ) {
+      $( '.inner' ).html( '' );
+      $( '.inner' ).append( response );
+      setTimeout(
+        function()
+        {
+          location.reload();
+        }, 5000);
+    });
+  });
+
+
   $( '.item-priority-form select' ).on( 'change', function( e ) {
     e.preventDefault();
 
