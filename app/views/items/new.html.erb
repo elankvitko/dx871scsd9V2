@@ -6,7 +6,7 @@
     <div class="new-item-form-area">
       <%= form_for @item do |f| %>
         <label for="store">Pick A Store</label>
-      <%= f.select :store, [ [ 'TopShop' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'TopShop' } %>
+      <%= f.select :store, [ [ 'None' ], [ 'TopShop' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'None' }, class: 'store-changer' %>
         <label for="name">Name - Place Color Into Name of Item As Well!</label>
       <%= f.text_field :name %>
       <%= f.label :model_number %>
@@ -36,12 +36,60 @@
       <% end %>
       <% end %>
     </div>
+
+    <div class="site-window-holder">
+
+    </div>
   </main>
 </div>
 
 <%= render '/layouts/footer' %>
 
 <script type="text/javascript">
+  $( '.store-changer' ).on( 'change', function( e ) {
+    var store = e.target.value
+
+    if ( store === 'TopShop' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://topshop.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Lululemon' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://lululemon.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'PacSun' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://pacsun.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Zara' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://zara.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Century 21' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://c21stores.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Sea Dreamer The Label' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://seadreamerthelabel.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Swimwearworld.com' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://swimwearworld.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Crate & Barrel' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://crateandbarrel.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'H&M' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://hm.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Sunglass Hut' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://sunglasshut.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'Bed Bath & Beyond' ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://bedbathandbeyond.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === "Victoria's Secret" ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://victoriassecret.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === 'None' ) {
+      $( '.site-window-holder' ).hide();
+    };
+  });
+
   $( 'form #item_price_range' ).on( 'change', function( e ) {
     $('form p').remove();
     var price_range = e.target.value;
