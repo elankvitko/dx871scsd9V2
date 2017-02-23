@@ -8,7 +8,7 @@
     <div class="new-item-form-area">
       <%= form_for @item do |f| %>
         <label for="store">Pick A Store</label>
-      <%= f.select :store, [ [ 'None' ], [ 'Beach Bunny' ], [ 'TopShop' ], [ 'SheInside' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'None' }, class: 'store-changer' %>
+      <%= f.select :store, [ [ 'None' ], [ 'Beach Bunny' ], [ 'Bluefly' ], [ 'TopShop' ], [ 'SheInside' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'None' }, class: 'store-changer' %>
         <label for="name">Name - Place Color Into Name of Item As Well!</label>
       <%= f.text_field :name %>
       <%= f.label :model_number %>
@@ -126,6 +126,9 @@
     } else if ( store === "SheInside" ) {
       $( '.site-window-holder' ).show();
       $( '.site-window-holder' ).html( "<iframe src='http://shein.com' width='100%' height='100%'></iframe>" );
+    } else if ( store === "Bluefly" ) {
+      $( '.site-window-holder' ).show();
+      $( '.site-window-holder' ).html( "<iframe src='http://bluefly.com' width='100%' height='100%'></iframe>" );
     } else if ( store === 'None' ) {
       $( '.site-window-holder' ).hide();
     };
