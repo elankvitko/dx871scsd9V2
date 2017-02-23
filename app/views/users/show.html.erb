@@ -1,0 +1,42 @@
+<%= render '/layouts/header' %>
+<%= render '/layouts/nav' %>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <h1>Welcome <%= @user.first_name %></h1>
+
+      <ul id="user-tasks">
+        <li><a href="" class='link-profile-change 1'>Shipped Items</a></li>
+        <li><a href="" class='link-profile-change 2'>My Shipping Addresses</a></li>
+        <li><a href="" class='link-profile-change 3'>Profile Info</a></li>
+      </ul>
+
+    <table class='table-shipped show-active 1'>
+      <th>Shipped Items</th>
+      <th>View Full Order</th>
+
+      <% @orders.each do | item | %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= link_to 'View', order_path( item.order ) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </main>
+</div>
+
+<%= render '/layouts/footer' %>
+
+<script type="text/javascript">
+  $( '.link-profile-change' ).on( 'click', function( e ) {
+    e.preventDefault();
+
+    var cont = this.className.split( ' ' )[ 1 ];
+
+    $( '.show-active' ).hide();
+
+    var found_items = $( '.' + cont )[ 1 ];
+
+    $( found_items ).show();
+  });
+</script>

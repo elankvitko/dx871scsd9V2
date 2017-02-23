@@ -30,4 +30,18 @@ class User < ApplicationRecord
    def first_name
      self.name.split(' ').first
    end
+
+   def items_shipped
+     shipped = []
+
+     self.orders.each do | order |
+       order.items.each do | item |
+         if item.status == 'Shipped'
+           shipped << item
+         end
+       end
+     end
+
+     shipped
+   end
 end

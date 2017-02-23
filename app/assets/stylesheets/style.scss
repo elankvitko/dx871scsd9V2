@@ -543,3 +543,32 @@ form.travel-form textarea {
 .popup-traveler .inner header {
 	text-align: center;
 }
+
+.main-cont p {
+	color: #000000;
+}
+
+#user-tasks {
+	list-style: none;
+	float: left;
+}
+
+#user-tasks li {
+	width: 250px;
+	height: 60px;
+	text-align: center;
+	background-color: #676767;
+	margin-top: 20px;
+}
+
+#user-tasks li a {
+	display: block;
+	padding: 18px;
+	color: #fff;
+}
+
+.table-shipped {
+	width: 600px;
+	margin-top: 30px;
+	float: right;
+}
