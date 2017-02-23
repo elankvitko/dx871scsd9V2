@@ -6,7 +6,9 @@
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><%= link_to 'My Profile', user_path( current_user ) %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'My Profile', user_path( current_user ) %></li>
+        <% end %>
         <li><a href="#">Contact</a></li>
         <% if user_signed_in? %>
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
