@@ -1,0 +1,31 @@
+<%= render '/layouts/header' %>
+<%= render '/layouts/nav' %>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <h1>Add New Address</h1>
+
+    <%= form_for @address, html: { method: :post, class: 'form-add-address' } do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <label for="address">Nickname</label>
+      <%= f.text_field :nickname, placeholder: 'Ex. My House' %>
+
+      <label for="address">Street Address</label>
+      <%= f.text_field :address, placeholder: 'Ex. 123 Abc St.' %>
+
+      <label for="address">City</label>
+      <%= f.text_field :city, placeholder: 'Beverly Hills' %>
+
+      <label for="address">State</label>
+      <%= f.text_field :state, placeholder: 'Ex. CA' %>
+
+      <label for="address">Zip Code</label>
+      <%= f.text_field :zip, placeholder: 'Ex. 90210' %>
+
+      <%= f.submit 'Save', class: 'submit-address-delete' %>
+    <% end %>
+  </main>
+</div>
+
+<%= render '/layouts/footer' %>

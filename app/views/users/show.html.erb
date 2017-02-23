@@ -22,12 +22,57 @@
         </tr>
       <% end %>
     </table>
+
+    <table class="table-addresses show-active 2">
+      <th>Nickname</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Delete</th>
+
+      <% @addresses.each do | address | %>
+        <tr class='address-<%= address.id %>'>
+          <td><%= address.nickname %></td>
+          <td><%= address.address %></td>
+          <td><%= address.city %></td>
+          <td><%= address.state %></td>
+          <td><%= address.zip %></td>
+          <td>
+            <%= form_for address, html: { method: :delete, class: 'form-delete-address' } do |f| %>
+              <%= f.hidden_field :id, value: address.id %>
+              <%= f.submit 'Delete', class: 'submit-address-delete' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <tr class='add-new-address'>
+        <td><%= link_to 'Add New', new_address_path %></td>
+      </tr>
+    </table>
+
   </main>
 </div>
 
 <%= render '/layouts/footer' %>
 
 <script type="text/javascript">
+  $( '.submit-address-delete' ).on( 'click', function( e ) {
+    e.preventDefault();
+
+    var target = e.target.parentElement;
+    var data = "address=" + target[ 3 ].value;
+    var url = target.action;
+
+    $.ajax({
+      type: 'delete',
+      url: url,
+      data: data
+    }).done( function( response ) {
+      $( '.address-' + target[ 3 ].value ).hide();
+    });
+  });
+
   $( '.link-profile-change' ).on( 'click', function( e ) {
     e.preventDefault();
 
