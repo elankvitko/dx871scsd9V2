@@ -29,6 +29,7 @@
       <th>City</th>
       <th>State</th>
       <th>Zip</th>
+      <th>Default</th>
       <th>Delete</th>
 
       <% @addresses.each do | address | %>
@@ -38,6 +39,12 @@
           <td><%= address.city %></td>
           <td><%= address.state %></td>
           <td><%= address.zip %></td>
+          <td>
+            <%= form_for address, html: { method: :put, class: 'form-update-default' } do |f| %>
+              <%= f.hidden_field :id, value: address.id %>
+              <%= f.submit 'Set', class: 'submit-address-default' %>
+            <% end %>
+          </td>
           <td>
             <%= form_for address, html: { method: :delete, class: 'form-delete-address' } do |f| %>
               <%= f.hidden_field :id, value: address.id %>
@@ -51,12 +58,35 @@
       </tr>
     </table>
 
+    <% if @default != [] %>
+      <p class='show-default'>
+        Your default shipping address is <%= @default.first.nickname %>
+        <br>
+        All items will now be shipped to this location!
+      </p>
+    <% end %>
   </main>
 </div>
 
 <%= render '/layouts/footer' %>
 
 <script type="text/javascript">
+  $( '.submit-address-default' ).on( 'click', function( e ) {
+    e.preventDefault();
+
+    var target = e.target.parentElement;
+    var data = "address=" + target[ 3 ].value;
+    var url = target.action;
+
+    $.ajax({
+      type: 'put',
+      url: url,
+      data: data
+    }).done( function( response ) {
+      location.reload();
+    });
+  });
+
   $( '.submit-address-delete' ).on( 'click', function( e ) {
     e.preventDefault();
 
@@ -70,6 +100,7 @@
       data: data
     }).done( function( response ) {
       $( '.address-' + target[ 3 ].value ).hide();
+      $( '.show-default' ).hide();
     });
   });
 
@@ -83,5 +114,11 @@
     var found_items = $( '.' + cont )[ 1 ];
 
     $( found_items ).show();
+
+    if ( found_items.className.split( ' ' )[ 2 ] === '2' ) {
+      $( '.show-default' ).show();
+    } else {
+      $( '.show-default' ).hide();
+    };
   });
 </script>
