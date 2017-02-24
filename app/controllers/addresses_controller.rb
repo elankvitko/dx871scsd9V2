@@ -7,7 +7,7 @@ class AddressesController < ApplicationController
     @address = Address.new( address_params )
 
     if @address.save
-      redirect_to user_path( current_user )
+      redirect_to controller: 'users', action: 'show', id: current_user.id, show_address: true
     end
   end
 

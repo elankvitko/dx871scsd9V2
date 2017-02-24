@@ -71,6 +71,13 @@
 <%= render '/layouts/footer' %>
 
 <script type="text/javascript">
+  if ( window.location.href.indexOf( '?show_address' ) > 1 ) {
+    $( '.show-active' ).hide();
+    var toShow = $( '.2' )[ 1 ];
+    $( toShow ).show();
+    $( '.show-default' ).show();
+  };
+
   $( '.submit-address-default' ).on( 'click', function( e ) {
     e.preventDefault();
 
