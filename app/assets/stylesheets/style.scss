@@ -379,9 +379,10 @@ table a, #comments a{background-color:inherit;}
 }
 
 .over-popup {
-	background-color: rgba(255,255,255,0.7);
-  padding: 50px;
-  border-radius: 50px;
+}
+
+.travel-overlay {
+  background-color: rgba(0,0,0,0.4);
 }
 
 .over-popup-travel-spec {
@@ -395,6 +396,12 @@ table a, #comments a{background-color:inherit;}
 
 .over-popup .inner header h2, h3 {
 	text-align: center;
+}
+
+.over-popup .inner header {
+	text-align: center;
+  padding-bottom: 30px;
+	color: #ffffff;
 }
 
 .close-in-1 {
@@ -411,8 +418,17 @@ table a, #comments a{background-color:inherit;}
 	text-align: center;
 }
 
+form.travel-form label {
+	color: #ffffff;
+}
+
 form.travel-form textarea {
 	margin: 0 auto;
+}
+
+.form-wrapper-apt {
+	margin-left: 270px;
+	margin-bottom: 50px;
 }
 
 .travel-click {
