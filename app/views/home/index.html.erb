@@ -1,3 +1,7 @@
+<div class="fb-warning">
+
+</div>
+
 <%= render '/layouts/header' %>
 
 <div class="bgded head-bgded overlay">
@@ -131,6 +135,14 @@
 
 
 <script type="text/javascript">
+  var element = $( '.fb-warning' );
+
+  if ( element ) {
+    $( '#topbar' ).hide();
+    $( '.bgded' ).hide();
+    $( '.wrapper' ).hide();
+  };
+
   $( '.site-link-go' ).on( 'click', function( e ) {
     e.preventDefault();
     var url = e.target.href
