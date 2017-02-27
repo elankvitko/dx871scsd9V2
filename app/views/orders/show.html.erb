@@ -35,15 +35,27 @@
         <td class='we-ft priority-changer'>
           <div class="form-holder">
             <form class="item-priority-form" action="/items/<%= item.id %>/edit" method="patch">
-              <select name="priority">
-                <% if item.priority == 'Low' %>
-                <option value="Low">Low</option>
-                <option value="High">High</option>
-                <% else %>
-                <option value="High">High</option>
-                <option value="Low">Low</option>
-                <% end %>
-              </select>
+              <% if item.status.include?( 'Picked Up' ) || item.status.include?( 'Delivered' ) || item.status.include?( 'Shipped' ) %>
+                <select name="priority" disabled>
+                  <% if item.priority == 'Low' %>
+                  <option value="Low">Low</option>
+                  <option value="High">High</option>
+                  <% else %>
+                  <option value="High">High</option>
+                  <option value="Low">Low</option>
+                  <% end %>
+                </select>
+              <% else %>
+                <select name="priority">
+                  <% if item.priority == 'Low' %>
+                  <option value="Low">Low</option>
+                  <option value="High">High</option>
+                  <% else %>
+                  <option value="High">High</option>
+                  <option value="Low">Low</option>
+                  <% end %>
+                </select>
+              <% end %>
             </form>
           </div>
         </td>
