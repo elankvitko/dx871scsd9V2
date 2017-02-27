@@ -17,8 +17,6 @@
       <%= f.text_field :name %>
       <%= f.label :model_number %>
       <%= f.text_field :model_number %>
-      <%= f.label :color %>
-      <%= f.text_field :color %>
         <label for="price_range">Choose The Price Range For This Item</label>
       <%= f.select :price_range, [ [ '$0 - $50' ], [ '$50 - $100' ], [ '$100 - $150' ], [ '$150 - $250' ], [ '$250 - $500' ], [ '$500 +' ] ] %>
       <%= f.hidden_field :shipping_time, value: 'This item will ship out within 24 hours!', class: "hidden_shipping_time" %>
