@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
      self.orders.each do | order |
        order.items.each do | item |
-         if item.status == 'Shipped'
+         if item.status.include?( 'Shipped' )
            shipped << item
          end
        end
