@@ -7,12 +7,18 @@
   <main class="hoc container clear">
     <div class="new-item-form-area">
       <%= form_for @item do |f| %>
+      <% if @order.nickname == nil %>
+        <label for="order_nickname">Name This Order (For Your Convenience - Optional)</label>
+        <input type="text" name="nickname">
+      <% end %>
         <label for="store">Pick A Store</label>
       <%= f.select :store, [ [ 'None' ], [ 'Beach Bunny' ], [ "Bob's Furniture" ], [ 'Bluefly' ], [ 'TopShop' ], [ 'B&H Photo Video' ], [ 'SheInside' ], [ 'Lululemon' ], [ 'PacSun' ], [ 'Zara' ], [ 'Century 21' ], [ 'Sea Dreamer The Label' ], [ 'Swimwearworld.com' ], [ 'Crate & Barrel' ], [ 'H&M' ], [ 'Sunglass Hut' ], [ 'Bed Bath & Beyond' ], [ "Victoria's Secret" ] ], { selected: 'None' }, class: 'store-changer' %>
         <label for="name">Name - Place Color Into Name of Item As Well!</label>
       <%= f.text_field :name %>
       <%= f.label :model_number %>
       <%= f.text_field :model_number %>
+      <%= f.label :color %>
+      <%= f.text_field :color %>
         <label for="price_range">Choose The Price Range For This Item</label>
       <%= f.select :price_range, [ [ '$0 - $50' ], [ '$50 - $100' ], [ '$100 - $150' ], [ '$150 - $250' ], [ '$250 - $500' ], [ '$500 +' ] ] %>
       <%= f.hidden_field :shipping_time, value: 'This item will ship out within 24 hours!', class: "hidden_shipping_time" %>

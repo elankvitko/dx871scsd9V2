@@ -1,11 +1,23 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
   def new
+    @order = nil
+
+    if params[ 'order_id' ]
+      @order = Order.find( params[ 'order_id' ] )
+    else
+      @order = Order.last
+    end
+
     @item = Item.new
   end
 
   def create
     @item = Item.new( item_params )
+
+    if !params[ 'nickname' ].empty?
+      Order.find( params[ 'item' ][ 'order_id' ] ).update_attributes( nickname: params[ 'nickname' ] )
+    end
 
     if @item.save
       redirect_to new_item_path order_id: @item.order_id
@@ -33,6 +45,6 @@ class ItemsController < ApplicationController
   private
 
     def item_params
-      params.require( :item ).permit( :order_id, :store, :name, :model_number, :status, :priority, :price_range, :shipping_time )
+      params.require( :item ).permit( :order_id, :store, :name, :model_number, :status, :priority, :price_range, :color, :shipping_time )
     end
 end

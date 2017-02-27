@@ -7,6 +7,7 @@
   <main class="hoc container clear">
     <table>
       <tr>
+        <th>Order Nickname</th>
         <th>Order Number</th>
         <th>Status</th>
         <th>Priority</th>
@@ -19,6 +20,11 @@
       <% else %>
         <tr class='high-order'>
       <% end %>
+          <% if order.nickname != nil %>
+            <td><%= link_to "#{ order.nickname }", order_path( order ) %></td>
+          <% else %>
+            <td>Add one when adding an item to this order!</td>
+          <% end %>
           <td><%= link_to "#{ order.order_number }", order_path( order ) %></td>
           <td><%= order.order_status %></td>
           <td>
