@@ -8,15 +8,17 @@ class ItemsController < ApplicationController
     else
       @order = Order.last
     end
-
+    
     @item = Item.new
   end
 
   def create
     @item = Item.new( item_params )
 
-    if !params[ 'nickname' ].empty?
-      Order.find( params[ 'item' ][ 'order_id' ] ).update_attributes( nickname: params[ 'nickname' ] )
+    if params[ 'nickname' ]
+      if params[ 'nickname' ].empty? == false
+        Order.find( params[ 'item' ][ 'order_id' ] ).update_attributes( nickname: params[ 'nickname' ] )
+      end
     end
 
     if @item.save
