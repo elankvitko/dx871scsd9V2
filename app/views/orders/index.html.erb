@@ -26,7 +26,7 @@
             <td>Add one when adding an item to this order!</td>
           <% end %>
           <td><%= link_to "#{ order.order_number }", order_path( order ) %></td>
-          <td><%= order.order_status %></td>
+          <td class='order_status_make_white'><%= order.order_status %></td>
           <td>
             <div class="form-holder">
               <form class="order-priority-form" action="/orders/<%= order.id %>/edit" method="patch">
