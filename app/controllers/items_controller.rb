@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     else
       @order = Order.last
     end
-    binding.pry
+    
     @item = Item.new
   end
 
